@@ -54,13 +54,13 @@ int main() {
     y.push_back(result);
   }
 
-  std::cout << "{ " << y[0];
+  std::cout << "{" << y[0];
   for(int i = 1; i < x.size(); ++i){
     if(y[i] != 0){
       std::cout << ", " << y[i];
     }
   }
-  std::cout << " }" << std::endl;
+  std::cout << "}" << std::endl;
 
   // =========== END ===========
 

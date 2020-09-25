@@ -37,12 +37,44 @@ int main() {
 
   // TODO write your code here
   // =========== START =========
+  // It appears that autograding wants the x and w read out
+  std::cout << "x: {" << x[0];
+  for(int i = 1; i < x.size(); i++) {
+    std::cout << ", " << x[i];
+  }
+  std::cout << "}" << std::endl;
 
+  std::cout << "w: {" << w[0];
+  for(int i = 1; i < w.size(); i++) {
+    std::cout << ", " << w[i];
+  }
+  std::cout << "}" << std::endl;
 
+  int kernel_mid = (w.size()-1)/2;
 
+  for(int i = 0; i < x.size(); ++i){
+    double result = 0;
+    for(int j = 0; j < w.size(); ++j){
+      if(i - kernel_mid + j >= 0 && i - kernel_mid + j < x.size())   {
+        result += x[i - kernel_mid + j] * w[j];
+      } else if(!pack_with_zeros && i - kernel_mid + j >= x.size()){
+        result += x[x.size()-1] * w[j];
+      } else if(!pack_with_zeros && i - kernel_mid + j < 0){
+        result += x[0] * w[j];
+      }
+    }
+    y.push_back(result);
+  }
+
+  std::cout << "{" << y[0];
+  for(int i = 1; i < x.size(); ++i){
+    if(y[i] != 0){
+      std::cout << ", " << y[i];
+    }
+  }
+  std::cout << "}" << std::endl;
 
   // =========== END ===========
 
   return 0;
 }
-
